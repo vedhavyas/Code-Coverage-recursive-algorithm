@@ -1,2 +1,2 @@
-include=war,test.c
-exclude=smsgateway,huge.class,test
+include=gcda,gcno
+exclude=c
