@@ -1,7 +1,7 @@
 ###Project Details
-testName=test
+testName=test2
 testNumber=1
-srcsMasterFolder=/home/ved/test/srcs
+srcsMasterFolder=/home/veda/srcs
 
 ###include and exclude exts and files
 include=gcda,gcno
