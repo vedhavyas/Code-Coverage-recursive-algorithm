@@ -1,8 +1,15 @@
 ###Project Details
-testName=test2
-testNumber=1
+testName=test
+testNumber=2
 srcsMasterFolder=/home/veda/srcs
 
 ###include and exclude exts and files
 include=gcda,gcno
 exclude=c
+
+###Report Details
+coverageReportFolderPath=/home/veda
+folderName=CoverageReport
+
+#Disply source in Coverage Report - true / false
+includeSource=true
