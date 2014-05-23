@@ -1,2 +1,8 @@
+###Project Details
+testName=test
+testNumber=1
+srcsMasterFolder=/home/ved/test/srcs
+
+###include and exclude exts and files
 include=gcda,gcno
 exclude=c
