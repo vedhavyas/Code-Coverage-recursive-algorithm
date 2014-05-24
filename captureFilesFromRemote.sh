@@ -1,40 +1,31 @@
 #############################################################################
-#   Author : Vedhavyas Singareddi                                           #
-#   File Name : changeFileName.sh                                           #
-#   Purpose : To change the File Names of GCNO and GCDA Files Recursively   #                                                                     #                                                                           #
+#   Author : Vedhavyas Singareddi					    #	
+#   File Name : captureFilesFromRemote.sh				    #	
+#   Purpose : To get the GCDA Files recursively from Remote Server          #	
 #############################################################################
 
 #!/bin/bash
 #set -x;
-
+statusFile=/CodeCoverage/.status;
+echo "started" > $statusFile;
 SAVEIFS=$IFS;
 IFS=$(echo -en "\n\b");
-configFile=`pwd`/Config.txt;
-
+configFile=/CodeCoverage/Config.txt;
+remoteFile="/CodeCoverage/remoteFile.txt";
 srcs=`cat $configFile | grep srcsMasterFolder | awk -F'[=#]' '{print $2}'`;
-testName=`cat $configFile | grep testName | awk -F= '{print $2}'`;
-testNumber=`cat $configFile | grep testNumber | awk -F= '{print $2}'`;
 excludeList=`cat $configFile | grep exclude | awk -F'[=,]' '{for(i=2;i<=NF;i++){print $i}}'`;
 includeList=`cat $configFile | grep include | awk -F'[=,]' '{for(i=2;i<=NF;i++){print $i}}'`;
-processedFile=`pwd`/processed$testName""files.txt;
-appendName="$testName$testNumber";
+serverName=`cat $configFile | grep serverName | awk -F= '{print $2}'`;
+userName=`cat $configFile | grep userName | awk -F= '{print $2}'`;
+
+if [ -f $remoteFile ]; then
+	rm -rf $remoteFile;
+fi 
 
 #### File Function ####
 
 file(){
-file=`echo $1 | awk -F/ '{print $NF}'`;
-ext=`echo "${file##*.}"`;
-originalName=`echo $file | awk -F. '{print $1}'`;
-newName="$originalName""_$appendName"".$ext";
-grep $1 $processedFile > /dev/null;
-if [ `echo $?` == 1 ]; then
-	grep $newName $processedFile > /dev/null;
-	if [ `echo $?` == 1 ]; then
-		echo "$2/$newName" >> $processedFile;
-		cp $1 $newName;
-	fi
-fi
-
+echo "$2/$1" >> $remoteFile; 
 }
 #### Folder function ####
 
@@ -84,14 +75,6 @@ cd $2;
 
 #### Main Function #####
 cd $srcs;
-if [ $testNumber == 1 ]; then
-	if [ -f $processedFile ]; then
-		rm -rf $processedFile;
-	fi
-	echo "---------------------" >> $processedFile;
-	echo "Processed File Names " >> $processedFile;
-	echo "---------------------" >> $processedFile;
-fi
 mainList=`ls`;
 for i in $mainList
 do
@@ -132,4 +115,5 @@ do
 	fi	
 done
 
+echo "Collected" > $statusFile;
 IFS=$SAVEIFS;

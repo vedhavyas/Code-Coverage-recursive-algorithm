@@ -1,9 +1,16 @@
+#############################################################################
+#   Author : Vedhavyas Singareddi                                           #
+#   File Name : generateCoverageReport.sh                                   #
+#   Purpose : To generate Coverage report from the data files 		    #                                                                     #                                                                           #
+#############################################################################
+
+
 #!/bin/bash
 #set -x;
 
 SAVEIFS=$IFS;
 IFS=$(echo -en "\n\b");
-configFile="./Config.txt";
+configFile=`pwd`/Config.txt;
 
 srcs=`cat $configFile | grep srcsMasterFolder | awk -F'[=#]' '{print $2}'`;
 excludeList=`cat $configFile | grep exclude | awk -F'[=,]' '{for(i=2;i<=NF;i++){print $i}}'`;
@@ -21,7 +28,6 @@ captureFile=$srcs/capture$testname;
 file(){
 file=`echo $1 | awk -F/ '{print $NF}'`;
 ext=`echo "${file##*.}"`;
-originalName=`echo $file | awk -F. '{print $1}'`;
 grep $1 $processedFile > /dev/null;
 if [ `echo $?` == 1 ]; then
 	rm -rf $1;

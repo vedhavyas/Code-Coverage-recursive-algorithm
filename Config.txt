@@ -1,6 +1,6 @@
 ###Project Details
 testName=test
-testNumber=2
+testNumber=1
 srcsMasterFolder=/home/veda/srcs
 
 ###include and exclude exts and files
@@ -15,5 +15,5 @@ folderName=CoverageReport
 includeSource=true
 
 ###Remote server details
-serverName=172.19.10.26
+serverName=10.10.10.1
 userName=root
