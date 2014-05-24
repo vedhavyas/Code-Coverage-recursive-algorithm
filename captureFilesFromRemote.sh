@@ -1,7 +1,7 @@
 #############################################################################
 #   Author : Vedhavyas Singareddi					    #	
 #   File Name : captureFilesFromRemote.sh				    #	
-#   Purpose : To get the GCDA Files recursively from Remote Server          #	
+#   Purpose : To capture the GCDA Files recursively from Remote Server      #	
 #############################################################################
 
 #!/bin/bash

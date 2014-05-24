@@ -1,3 +1,10 @@
+#############################################################################
+#   Author : Vedhavyas Singareddi                                           #
+#   File Name : getFilesFromRemote.sh                                       #
+#   Purpose : To get GCDA Files from remote server          	            #
+#############################################################################
+
+
 #!/bin/bash
 
 configFile=`pwd`/Config.txt;
