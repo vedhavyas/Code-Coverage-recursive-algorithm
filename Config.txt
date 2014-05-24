@@ -11,5 +11,9 @@ exclude=c
 coverageReportFolderPath=/home/veda
 folderName=CoverageReport
 
-#Disply source in Coverage Report - true / false
+###Disply source in Coverage Report - true / false
 includeSource=true
+
+###Remote server details
+serverName=172.19.10.26
+userName=root
